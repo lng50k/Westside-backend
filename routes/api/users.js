@@ -32,7 +32,9 @@ router.put('/user', auth.required, function(req, res, next){
     if(typeof req.body.user.password !== 'undefined'){
       user.setPassword(req.body.user.password);
     }
-
+    if (typeof req.body.user.service !== 'undefined') {
+      user.service = req.body.user.service;
+    }
     return user.save().then(function(){
       return res.json({user: user.toAuthJSON()});
     });
