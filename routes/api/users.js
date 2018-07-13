@@ -13,6 +13,8 @@ router.get('/user', auth.required, function(req, res, next){
 });
 
 router.put('/user', auth.required, function(req, res, next){
+
+  console.log(req)
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
 
