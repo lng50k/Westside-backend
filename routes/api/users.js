@@ -14,7 +14,6 @@ router.get('/user', auth.required, function(req, res, next){
 
 router.put('/user', auth.required, function(req, res, next){
 
-  console.log(req)
   User.findById(req.payload.id).then(function(user){
     if(!user){ return res.sendStatus(401); }
 
@@ -44,7 +43,6 @@ router.put('/user', auth.required, function(req, res, next){
 });
 
 router.post('/users/login', function(req, res, next){
-  console.log(req.body.user)
   if(!req.body.user.email){
     return res.status(422).json({errors: {email: "can't be blank"}});
   }
