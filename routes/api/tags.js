@@ -5,11 +5,11 @@ var Article = mongoose.model('Article');
 // return a list of tags
 router.post('/', function(req, res, next) {
   Article.remove().then(() => {
-    if (req.body.service) 
+    if (req.body) 
     {
-      console.log(req.body.service)
+      console.log(req.body)
       var article = new Article();
-      article.service = req.body.service;
+      article.service = req.body;
       article.save().then(() => {
         return res.json({success: 'success'})
       }).catch(next);
