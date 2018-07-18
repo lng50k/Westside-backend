@@ -20,7 +20,9 @@ router.post('/', function(req, res, next) {
 
 router.get('/', (req, res, next) => {
   Article.findOne(true).then((service) => {
-    return res.json({service: service.service, therapy_code: service.therapy_code});
+    if (service)
+      return res.json({service: service.service, therapy_code: service.therapy_code});
+    return res.json({service: [], therapy_code: []})
   }).catch(next);
 })
 
