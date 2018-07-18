@@ -9,7 +9,8 @@ router.post('/', function(req, res, next) {
     {
       console.log(req.body)
       var article = new Article();
-      article.service = req.body;
+      article.service = req.body.service;
+      article.therapy_code = req.body.therapy_code;
       article.save().then(() => {
         return res.json({success: 'success'})
       }).catch(next);
@@ -19,7 +20,7 @@ router.post('/', function(req, res, next) {
 
 router.get('/', (req, res, next) => {
   Article.findOne(true).then((service) => {
-    return res.json({service: service.service});
+    return res.json({service: service.service, therapy_code: service.therapy_code});
   }).catch(next);
 })
 
